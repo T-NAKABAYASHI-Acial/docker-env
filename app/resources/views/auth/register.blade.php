@@ -61,6 +61,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">権限</label>
+
+                            <div class="col-md-6">
+                                <select name='role' id="role" class="form-select">
+                                    <option value="" selected>選択してください</option>
+                                    <option value="1">管理者</option>
+                                    <option value="2">一般</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
