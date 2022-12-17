@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('welcome');
     });
 });
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('edit/{id}', 'UserController@getEdit')->name('user.edit');

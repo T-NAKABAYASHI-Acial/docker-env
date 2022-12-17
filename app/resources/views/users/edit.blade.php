@@ -1,20 +1,3 @@
-<!doctype html>
-<html lang="ja">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- オリジナル CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-</head>
-
-<body class="text-center bg-light">
     @extends('layouts.app') @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -44,25 +27,3 @@
 </body>
 
 </html>
-
-<!-- <form class="border rounded bg-white form-login">
-    <div class="form-group">
-        <p>氏名</p>
-        <input type="name" class="form-control my3" placeholder="お名前">
-    </div>
-    <div class="form-group">
-        <p>生年月日</p>
-        <input type="" class="form-control my3" placeholder="生年月日">
-    </div>
-    <div class="form-group">
-        <p>電話番号</p>
-        <input type="tel" class="form-control my3" placeholder="電話版号">
-    </div>
-    <div class="form-group pt-3">
-        <p>メールアドレス</p>
-        <input type="email" class="form-control my-3" placeholder="メールアドレス">
-    </div>
-    <div class="my-3 form-check">
-        <button type="submit" class="btn btn-primary">更新</button>
-    </div>
-</form> -->

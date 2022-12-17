@@ -26,8 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         $id = Auth::id();
-        return view('home', [
-            'id' => $id,
-        ]);
+        $user = Auth::user();
+
+        if($user->role === 2) {
+            return view('home', [
+                'id' => $id,
+            ]);
+        } elseif ($user->role === 1) {
+            return view('admims.top', [
+                'id' => $id,
+            ]);
+        }
     }
 }

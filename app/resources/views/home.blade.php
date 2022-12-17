@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.app') 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -11,7 +10,6 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
                     <body class="text-center bg-light">
                         <form class="border rounded bg-white form-login">
                             <table class="table table-bordered">
