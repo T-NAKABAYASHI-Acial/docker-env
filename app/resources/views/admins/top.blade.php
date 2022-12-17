@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -27,7 +27,7 @@
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
-                                    <th scope="col"></th>                  
+                                    <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
 
@@ -35,12 +35,12 @@
                             </tbody>
                         </table>
 
-                            <div class="my-3 form-check">
-                                <a class="btn btn-primary" href="{{ route('user.postEdit',['id'=>$id]) }}">新規大会作成</a>
-                            </div>
-                            <div class="my-3 form-check">
-                                <a class="btn btn-primary" href="{{ route('user.postEdit',['id'=>$id]) }}">プロフィール編集</a>
-                            </div>
+                        <div class="my-3 form-check">
+                            <a class="btn btn-primary" href="{{ route('admin.createForm', ['id'=>$id]) }}">新規大会作成</a>
+                        </div>
+                        <div class="my-3 form-check">
+                            <a class="btn btn-primary" href="{{ route('user.postEdit', ['id'=>$id]) }}">プロフィール編集</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -48,8 +48,8 @@
     </div>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
 
 </body>
 

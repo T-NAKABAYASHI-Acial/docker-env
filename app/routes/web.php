@@ -14,14 +14,19 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+Route::get('/', function () {
+    return view('registration');
+});
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
 });
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::post('create/{id}', 'EventsController@create')->name('admin.postCreate');
+    Route::get('create/{id}', 'EventsController@createForm')->name('admin.createForm');
+});
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('edit/{id}', 'UserController@getEdit')->name('user.edit');

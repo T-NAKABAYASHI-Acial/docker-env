@@ -49,4 +49,9 @@ class User extends Authenticatable
         // first()は1件のみ取得する関数
         return $query->first();
     }
+
+    public function event()
+    {
+        return $this->belongsTo('App\Event');
+    }
 }

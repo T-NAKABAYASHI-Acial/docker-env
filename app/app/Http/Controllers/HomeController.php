@@ -28,12 +28,12 @@ class HomeController extends Controller
         $id = Auth::id();
         $user = Auth::user();
 
-        if($user->role === 2) {
+        if ($user->role === 2) {
             return view('home', [
                 'id' => $id,
             ]);
         } elseif ($user->role === 1) {
-            return view('admims.top', [
+            return view('admins.top', [
                 'id' => $id,
             ]);
         }
