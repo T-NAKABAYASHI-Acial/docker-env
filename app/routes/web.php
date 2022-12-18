@@ -19,14 +19,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::resource('events', 'EventController');
+
 Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::post('create/{id}', 'EventsController@create')->name('admin.postCreate');
-    Route::get('create/{id}', 'EventsController@createForm')->name('admin.createForm');
-});
+// Route::group(['prefix' => 'admin'], function () {
+//     // Route::post('create/{event}', 'EventsController@create')->name('admin.postCreate');
+//     Route::get('create/{event}', 'EventsController@createForm')->name('admin.createForm');
+// });
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('edit/{id}', 'UserController@getEdit')->name('user.edit');

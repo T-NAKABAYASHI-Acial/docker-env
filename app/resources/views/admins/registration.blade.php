@@ -8,7 +8,7 @@
                     <form class="border rounded bg-white form-login">
                         <h1 class="h10 my-10">大会日程登録</h1>
 
-                        <form method="POST" class="border rounded bg-white form-login" action="{{ route('admin.postCreate', ['id'=>$id]) }}">
+                        <form method="POST" class="border rounded bg-white form-login" action="/events">
                             @csrf
                             <div class="form-group">
                                 <p>ゲーム名</p>
