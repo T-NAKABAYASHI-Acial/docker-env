@@ -20,18 +20,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('events', 'EventController');
+Route::get('events', 'EventController@create');
 
 Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/', 'HomeController@index')->name('home');
 
-// Route::group(['prefix' => 'admin'], function () {
-//     // Route::post('create/{event}', 'EventsController@create')->name('admin.postCreate');
-//     Route::get('create/{event}', 'EventsController@createForm')->name('admin.createForm');
-// });
+Route::group(['prefix' => 'admin'], function () {
+    Route::post('create/confirm', 'EventsController@confirm')->name('confirm.event');
+    Route::post('create/complete', 'EventsController@complete')->name('complete.event');
+    // Route::post('create/{event}', 'EventsController@create')->name('admin.postCreate');
+    Route::get('create', 'EventsController@createForm')->name('admins.createForm');
+    Route::get('top', 'HomeController@adminTop')->name('admins.top');
+});
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('edit/{id}', 'UserController@getEdit')->name('user.edit');
     Route::post('edit/{id}', 'UserController@postEdit')->name('user.postEdit');
+    Route::get('events', 'EventsController@events')->name('events');
+    Route::get('events/detail/{event_id}', 'EventsController@detail')->name('event.detail');
+    Route::post('events/reserve', 'EventsController@reserve')->name('event.reserve');
 });

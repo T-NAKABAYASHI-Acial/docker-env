@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Event;
+use App\Reservation;
 
 class HomeController extends Controller
 {
@@ -29,13 +31,23 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user->role === 2) {
+            $event = new Reservation;
+            $events = $event->join('events', 'reservations.user_id', '=', 'events.id')->where('reservations.user_id', $id)->get();
+
             return view('home', [
                 'id' => $id,
+                'events' => $events,
             ]);
         } elseif ($user->role === 1) {
-            return view('admins.top', [
-                'id' => $id,
-            ]);
+            $events = new Event();
+            $events = $events->all()->toArray();
+            $id = Auth::id();
+
+            return view('admins.top', ['events' => $events, 'id' => $id]);
         }
+    }
+
+    public function adminTop(Request $request)
+    {
     }
 }

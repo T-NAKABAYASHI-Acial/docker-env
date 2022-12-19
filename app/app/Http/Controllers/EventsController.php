@@ -7,25 +7,44 @@ use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Event;
+use App\Reservation;
 use App\User;
 use Validator;
 
 
 class EventsController extends Controller
 {
+    private $formItems = ["game_name", "event_name", "place", "event_start", "event_end", "maximum", "recruit_start", "recruit_end"];
 
-    public function createForm(Event $event)
+    public function __construct()
     {
-        return view('admins.registration', [
+        $this->middleware('auth');
+    }
+
+    public function createForm()
+    {
+        return view('admins.registration');
+    }
+
+    public function confirm(Request $request)
+    {
+
+        $event = $request->only($this->formItems);
+        return view('admins.confirm', [
             'event' => $event,
         ]);
+    }
+    public function complete()
+    {
+        return view('admins.complete');
     }
 
     public function store(Request $request, Event $event)
     {
         $events = new Event;
+        $id = Auth::id();
 
-        $events->user_id = $event;
+        $events->user_id = $id;
 
         $events->event_name = $request->event_name;
 
@@ -45,26 +64,34 @@ class EventsController extends Controller
 
         $events->save();
 
-        return view('admins.top');
-        // // //バリデーション
-        // // $validator = Validator::make($request->all(), [
-        // //     'game_name' => 'required|max:255',
-        // //     'event_name' => 'required|max:255',
-        // // ]);
+        return route('admins.top');
+    }
 
-        // // //バリデーション:エラー
-        // // if ($validator->fails()) {
-        // //     return redirect('/')
-        // //         ->withInput()
-        // //         ->withErrors($validator);
-        // // }
+    public function events()
+    {
+        $events = new Event();
+        $events = $events->all()->toArray();
+        $id = Auth::id();
 
-        // $events = new Event;
-        // // $events->game_name = $request->game_name;
-        // // $events->event_name = $request->event_name;
-        // $events->user_id = Auth::id(); //ここでログインしているユーザidを登録しています
-        // $events->save();
+        return view('users.events', ['events' => $events, 'id' => $id]);
+    }
 
-        // return redirect('/');
+    public function detail(int $id)
+    {
+        $event = new Event;
+        $event = $event->find($id);
+
+        return view('users.eventDetail', ['event' => $event]);
+    }
+
+    public function reserve(Request $request)
+    {
+        $reservation = new Reservation;
+        $id = Auth::id();
+        $reservation->user_id = $id;
+        $reservation->event_id = $request->id;
+        $reservation->save();
+
+        return view('users.reserveComplete');
     }
 }
