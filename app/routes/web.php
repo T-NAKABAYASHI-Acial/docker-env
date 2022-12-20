@@ -40,4 +40,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('events', 'EventsController@events')->name('events');
     Route::get('events/detail/{event_id}', 'EventsController@detail')->name('event.detail');
     Route::post('events/reserve', 'EventsController@reserve')->name('event.reserve');
+    Route::get('events/reserve/detail/{reservation_id}', 'EventsController@reserveDetail')->name('event.reserveDetail');
+    Route::post('events/reserve/delete', 'EventsController@reserveDelete')->name('event.reserveDelete');
 });

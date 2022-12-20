@@ -32,7 +32,10 @@ class HomeController extends Controller
 
         if ($user->role === 2) {
             $event = new Reservation;
-            $events = $event->join('events', 'reservations.user_id', '=', 'events.id')->where('reservations.user_id', $id)->get();
+            $events = $event->select('reservations.id as reservation_id', 'events.game_name', 'events.event_name', 'events.place', 'events.event_start', 'events.event_end', 'events.recruit_start', 'events.recruit_end', 'events.maximum')
+                ->join('events', 'reservations.event_id', '=', 'events.id')
+                ->where('reservations.user_id', $id)
+                ->get();
 
             return view('home', [
                 'id' => $id,
